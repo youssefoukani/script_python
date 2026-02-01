@@ -11,13 +11,14 @@ from datetime import datetime
 
 
 
-LOGIN_URL = "https://collegio-booking-bue9.vercel.app/login"
-BOOKING_URL = "https://collegio-booking-bue9.vercel.app/aule-studio"
+LOGIN_URL = os.environ["URL_LOGIN"]
+BOOKING_URL = os.environ["URL_PRENOTAZIONE"]
 
 USERNAME = os.environ["USERNAMEM"]
 PASSWORD = os.environ["PASSWORDM"]
 
-PATH_AULA = "/html/body/div/div/main/div/div/div[2]/div[5]/div[2]/div/button[7]"
+PATH_AULA = "/html/body/div/div/main/div/div/div[3]/div[5]/div[2]/div/button[4]"
+           
 
 # ===== HEADLESS OBBLIGATORIO =====
 chrome_options = Options()
@@ -37,7 +38,7 @@ wait = WebDriverWait(driver, 20)
 def wait_until_after_midnight():
     while True:
         now = datetime.utcnow()
-        if now.hour == 14 and now.minute == 22 and now.second >= 1:
+        if now.hour == 0 and now.minute == 0 and now.second >= 1:
             break
         time.sleep(1)
         
