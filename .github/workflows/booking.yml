@@ -2,7 +2,7 @@ name: Booking Bot
 
 on:
   schedule:
-    - cron: '21 14 * * *'   # mezzanotte UTC
+    - cron: '25 13 * * *'   # mezzanotte UTC
   workflow_dispatch:
 
 jobs:
