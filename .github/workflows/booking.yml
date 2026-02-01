@@ -1,0 +1,30 @@
+name: Booking Bot
+
+on:
+  schedule:
+    - cron: '23 23 * * *'   # mezzanotte UTC
+  workflow_dispatch:
+
+jobs:
+  booking:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: Run booking script
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          URL_LOGIN: ${{ secrets.URL_LOGIN }}
+          URL_PRENOTAZIONE: ${{ secrets.URL_PRENOTAZIONE }}
+        run: python script.py
