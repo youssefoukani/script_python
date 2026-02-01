@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import os
+from datetime import datetime
+
+
 
 LOGIN_URL = os.environ["URL_LOGIN"]
 BOOKING_URL = os.environ["URL_PRENOTAZIONE"]
@@ -30,6 +33,14 @@ driver = webdriver.Chrome(
 
 wait = WebDriverWait(driver, 20)
 
+
+def wait_until_target(second=50):
+    while True:
+        now = datetime.utcnow()  # GitHub Actions usa UTC
+        if now.second >= second:
+            break
+        time.sleep(0.2)
+        
 def login():
     driver.get(LOGIN_URL)
 
@@ -68,6 +79,7 @@ def prenota_aula():
     print("Prenotazione successful")
 
 try:
+    wait_until_target(50)
     login()
     prenota_aula()
 finally:
