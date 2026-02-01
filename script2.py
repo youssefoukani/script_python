@@ -38,7 +38,7 @@ wait = WebDriverWait(driver, 20)
 def wait_until_after_midnight():
     while True:
         now = datetime.utcnow()
-        if now.hour == 0 and now.minute == 0 and now.second >= 1:
+        if now.hour == 23 and now.minute == 0 and now.second >= 1:
             break
         time.sleep(1)
         
