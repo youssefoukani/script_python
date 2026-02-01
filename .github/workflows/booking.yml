@@ -2,7 +2,7 @@ name: Booking Bot
 
 on:
   schedule:
-    - cron: '35 15 * * *'   
+    - cron: '35 15 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,10 +21,22 @@ jobs:
         run: |
           pip install selenium webdriver-manager
 
-      - name: Run booking script
+      - name: Run booking script 1
         env:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           URL_LOGIN: ${{ secrets.URL_LOGIN }}
           URL_PRENOTAZIONE: ${{ secrets.URL_PRENOTAZIONE }}
+          USERNAMEM: ${{ secrets.USERNAMEM }}
+          PASSWORDM: ${{ secrets.PASSWORDM }}
         run: python script.py
+
+      - name: Run booking script 2
+        env:
+          USERNAME: ${{ secrets.USERNAME }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          URL_LOGIN: ${{ secrets.URL_LOGIN }}
+          URL_PRENOTAZIONE: ${{ secrets.URL_PRENOTAZIONE }}
+          USERNAMEM: ${{ secrets.USERNAMEM }}
+          PASSWORDM: ${{ secrets.PASSWORDM }}
+        run: python script2.py
