@@ -17,7 +17,7 @@ BOOKING_URL = os.environ["URL_PRENOTAZIONE"]
 USERNAME = os.environ["USERNAME"]
 PASSWORD = os.environ["PASSWORD"]
 
-PATH_AULA = "/html/body/div/div/main/div/div/div[2]/div[5]/div[2]/div/button[7]"
+PATH_AULA = "/html/body/div/div/main/div/div/div[3]/div[5]/div[2]/div/button[6]"
 
 # ===== HEADLESS OBBLIGATORIO =====
 chrome_options = Options()
@@ -37,7 +37,7 @@ wait = WebDriverWait(driver, 20)
 def wait_until_after_midnight():
     while True:
         now = datetime.utcnow()
-        if now.hour == 14 and now.minute == 22 and now.second >= 1:
+        if now.hour == 0 and now.minute == 0 and now.second >= 1:
             break
         time.sleep(1)
         
