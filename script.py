@@ -34,10 +34,10 @@ driver = webdriver.Chrome(
 wait = WebDriverWait(driver, 20)
 
 
-def wait_until_target(second=50):
+def wait_until_after_midnight():
     while True:
-        now = datetime.utcnow()  # GitHub Actions usa UTC
-        if now.second >= second:
+        now = datetime.utcnow()
+        if now.hour == 14 and now.minute == 16 and now.second >= 1::
             break
         time.sleep(0.2)
         
@@ -60,10 +60,12 @@ def login():
     ).click()
 
     wait.until(EC.url_to_be("https://collegio-booking-bue9.vercel.app/"))
-    print("Login successful")
-
+    print("Login done at:", datetime.utcnow())
+    
 def prenota_aula():
+    
     driver.get(BOOKING_URL)
+    print("Entered booking page at:", datetime.utcnow())
 
     aula = wait.until(EC.presence_of_element_located((By.XPATH, PATH_AULA)))
     aula.click()
@@ -74,13 +76,14 @@ def prenota_aula():
         )
     )
     conferma.click()
+    print("Booked at:", datetime.utcnow())
 
-    time.sleep(3)
-    print("Prenotazione successful")
+    time.sleep(2)
+    
 
 try:
-    wait_until_target(50)
     login()
+    wait_until_after_midnight()
     prenota_aula()
 finally:
     driver.quit()
