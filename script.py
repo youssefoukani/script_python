@@ -6,12 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+import os
 
-LOGIN_URL = "https://collegio-booking-bue9.vercel.app/login"
-BOOKING_URL = "https://collegio-booking-bue9.vercel.app/aule-studio"
+LOGIN_URL = os.environ["URL_LOGIN"]
+BOOKING_URL = os.environ["URL_PRENOTAZIONE"]
 
-USERNAME = ""
-PASSWORD = ""
+USERNAME = os.environ["USERNAME"]
+PASSWORD = os.environ["PASSWORD"]
 
 PATH_AULA = "/html/body/div/div/main/div/div/div[2]/div[5]/div[2]/div/button[7]"
 
